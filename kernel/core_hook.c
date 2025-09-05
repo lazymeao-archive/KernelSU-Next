@@ -609,6 +609,7 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#ifdef CMD_SUSFS_ADD_SUS_PATH_LOOP
 		if (arg2 == CMD_SUSFS_ADD_SUS_PATH_LOOP) {
 			int error = 0;
 			if (!ksu_access_ok((void __user*)arg3, sizeof(struct st_susfs_sus_path))) {
@@ -625,6 +626,8 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#endif //#ifdef CMD_SUSFS_ADD_SUS_PATH_LOOP
+		#ifdef CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH
 		if (arg2 == CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH) {
 			int error = 0;
 			if (!ksu_access_ok((void __user*)arg3, SUSFS_MAX_LEN_PATHNAME)) {
@@ -641,6 +644,8 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#endif //#ifdef CMD_SUSFS_SET_ANDROID_DATA_ROOT_PATH
+		#ifdef CMD_SUSFS_SET_SDCARD_ROOT_PATH
 		if (arg2 == CMD_SUSFS_SET_SDCARD_ROOT_PATH) {
 			int error = 0;
 			if (!ksu_access_ok((void __user*)arg3, SUSFS_MAX_LEN_PATHNAME)) {
@@ -657,6 +662,7 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#endif //#ifdef CMD_SUSFS_SET_SDCARD_ROOT_PATH
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_PATH
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 		if (arg2 == CMD_SUSFS_ADD_SUS_MOUNT) {
@@ -675,6 +681,7 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#ifdef CMD_SUSFS_HIDE_SUS_MNTS_FOR_ALL_PROCS
 		if (arg2 == CMD_SUSFS_HIDE_SUS_MNTS_FOR_ALL_PROCS) {
 			int error = 0;
 			if (arg3 != 0 && arg3 != 1) {
@@ -687,6 +694,8 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#endif //#ifdef CMD_SUSFS_HIDE_SUS_MNTS_FOR_ALL_PROCS
+		#ifdef CMD_SUSFS_UMOUNT_FOR_ZYGOTE_ISO_SERVICE
 		if (arg2 == CMD_SUSFS_UMOUNT_FOR_ZYGOTE_ISO_SERVICE) {
 			int error = 0;
 			if (arg3 != 0 && arg3 != 1) {
@@ -699,6 +708,7 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#endif //#ifdef CMD_SUSFS_UMOUNT_FOR_ZYGOTE_ISO_SERVICE
 #endif //#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 		if (arg2 == CMD_SUSFS_ADD_SUS_KSTAT) {
@@ -949,6 +959,7 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 			return 0;
 		}
 #endif // #ifdef CONFIG_KSU_SUSFS_SUS_SU
+		#ifdef CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING
 		if (arg2 == CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING) {
 			int error = 0;
 			if (arg3 != 0 && arg3 != 1) {
@@ -960,6 +971,7 @@ int ksu_handle_prctl(int option, unsigned long arg2, unsigned long arg3,
 				pr_info("susfs: copy_to_user() failed\n");
 			return 0;
 		}
+		#endif // #ifdef CMD_SUSFS_ENABLE_AVC_LOG_SPOOFING
 	}
 #endif //#ifdef CONFIG_KSU_SUSFS
 
